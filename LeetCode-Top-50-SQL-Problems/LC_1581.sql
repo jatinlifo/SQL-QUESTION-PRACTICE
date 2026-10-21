@@ -88,4 +88,19 @@ insert into Transactions (transaction_id, visit_id, amount) values ('2', '5', '3
 insert into Transactions (transaction_id, visit_id, amount) values ('3', '5', '300')
 insert into Transactions (transaction_id, visit_id, amount) values ('9', '5', '200')
 insert into Transactions (transaction_id, visit_id, amount) values ('12', '1', '910')
-insert into Transactions (transaction_id, visit_id, amount) values ('13', '2', '970')
+insert into Transactions (transaction_id, visit_id, amount) values ('13', '2', '970');
+
+-- Write your PostgreSQL query statement below
+SELECT 
+    customer_id, 
+    COUNT(*) AS count_no_trans
+FROM 
+    Visits AS v
+LEFT JOIN 
+    Transactions AS t
+ON 
+    v.visit_id = t.visit_id
+WHERE 
+    transaction_id IS NULL
+GROUP BY 
+    customer_id;
