@@ -88,4 +88,18 @@ insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-12
 insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-13 12:58:28', 'confirmed')
 insert into Confirmations (user_id, time_stamp, action) values ('7', '2021-06-14 13:59:27', 'confirmed')
 insert into Confirmations (user_id, time_stamp, action) values ('2', '2021-01-22 00:00:00', 'confirmed')
-insert into Confirmations (user_id, time_stamp, action) values ('2', '2021-02-28 23:59:59', 'timeout')
+insert into Confirmations (user_id, time_stamp, action) values ('2', '2021-02-28 23:59:59', 'timeout');
+
+
+-- Write your MySQL query statement below
+SELECT
+    s.user_id, 
+    IFNULL(ROUND(SUM(c.action = 'confirmed')/COUNT(s.user_id), 2), 0.00) AS confirmation_rate
+FROM
+    Signups AS s
+LEFT JOIN
+    Confirmations AS c
+ON
+    s.user_id = c.user_id
+GROUP BY
+    s.user_id;
