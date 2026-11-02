@@ -73,8 +73,8 @@
 -- Alice and Alex registered in contest 215 and the percentage is ((2/3) * 100) = 66.67%
 -- Bob registered in contest 207 and the percentage is ((1/3) * 100) = 33.33%
 
-Create table If Not Exists Users (user_id int, user_name varchar(20))
-Create table If Not Exists Register (contest_id int, user_id int)
+Create table If Not Exists Users (user_id int, user_name varchar(20));
+Create table If Not Exists Register (contest_id int, user_id int);
 Truncate table Users
 insert into Users (user_id, user_name) values ('6', 'Alice')
 insert into Users (user_id, user_name) values ('2', 'Bob')
