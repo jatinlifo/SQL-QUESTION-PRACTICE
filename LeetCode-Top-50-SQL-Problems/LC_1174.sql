@@ -61,7 +61,7 @@ insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delive
 insert into Delivery (delivery_id, customer_id, order_date, customer_pref_delivery_date) values ('7', '4', '2019-08-09', '2019-08-09');
 
 
--- Write your PostgreSQL query statement below
+-- Write your PostgreSQL query statement below--
 
 SELECT
     ROUND(COUNT(customer_id) FILTER (WHERE order_date = customer_pref_delivery_date) * 100.0 / COUNT(DISTINCT customer_id), 2) AS  immediate_percentage
