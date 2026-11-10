@@ -39,3 +39,33 @@
 -- +-----------+
 -- Explanation: 
 -- Only the player with id 1 logged back in after the first day he had logged in so the answer is 1/3 = 0.33
+
+
+Create table If Not Exists Activity (player_id int, device_id int, event_date date, games_played int)
+Truncate table Activity
+insert into Activity (player_id, device_id, event_date, games_played) values ('1', '2', '2016-03-01', '5')
+insert into Activity (player_id, device_id, event_date, games_played) values ('1', '2', '2016-03-02', '6')
+insert into Activity (player_id, device_id, event_date, games_played) values ('2', '3', '2017-06-25', '1')
+insert into Activity (player_id, device_id, event_date, games_played) values ('3', '1', '2016-03-02', '0')
+insert into Activity (player_id, device_id, event_date, games_played) values ('3', '4', '2018-07-03', '5');
+
+
+-- Write your PostgreSQL query statement below
+SELECT
+    ROUND(COUNT(DISTINCT a.player_id) * 1.0 /  (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS
+    fraction
+FROM
+    Activity AS a
+INNER JOIN (
+    SELECT
+        player_id,
+    MIN(event_date) AS first_login_date
+    FROM
+        Activity
+    GROUP BY
+        player_id
+) AS f
+ON
+    a.player_id = f.player_id
+AND
+    a.event_date = f.first_login_date + INTERVAL '1 day';
