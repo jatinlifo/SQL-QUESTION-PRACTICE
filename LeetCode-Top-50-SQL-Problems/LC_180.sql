@@ -39,10 +39,10 @@
 -- +-----------------+
 -- | 1               |
 -- +-----------------+
--- Explanation: 1 is the only number that appears consecutively for at least three times.
+-- Explanation: 1 is the only number that appears consecutively for at least three times .
 
-Create table If Not Exists Logs (id int, num int)
-Truncate table Logs
+Create table If Not Exists Logs (id int, num int);
+Truncate table Logs;
 insert into Logs (id, num) values ('1', '1')
 insert into Logs (id, num) values ('2', '1')
 insert into Logs (id, num) values ('3', '1')
