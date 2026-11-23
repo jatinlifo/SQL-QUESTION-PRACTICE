@@ -50,3 +50,17 @@ insert into Logs (id, num) values ('4', '2')
 insert into Logs (id, num) values ('5', '1')
 insert into Logs (id, num) values ('6', '2')
 insert into Logs (id, num) values ('7', '2');
+
+-- Write your PostgreSQL query statement below
+SELECT DISTINCT
+    l1.num AS ConsecutiveNums
+FROM
+    Logs AS l1, Logs AS l2, Logs AS l3
+WHERE
+    l1.id = l2.id - 1 
+  AND
+    l2.id = l3.id - 1
+  AND 
+    l1.num = l2.num
+  AND
+    l2.num = l3.num;
